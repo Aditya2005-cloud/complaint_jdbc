@@ -1,15 +1,21 @@
 Oracle Database 
 
+
+Table created.
+
 SQL> create table complaints
   2  (
   3  id number primary key,
   4  name varchar2(22),
   5  description varchar2(200),
   6   status varchar2(50));
-Table created.
+
+Sequence created.
 
 SQL> create sequence complain_seq start with 1 increment by 1;
-Sequence created.
+
+
+Trigger created
 
 SQL> CREATE OR REPLACE TRIGGER CCOMLAIN_TRIGGER
   2  BEFORE INSERT ON complaints
@@ -18,7 +24,11 @@ SQL> CREATE OR REPLACE TRIGGER CCOMLAIN_TRIGGER
   5  SELECT complain_seq.nextval INTO :NEW.ID FROM DUAL;
   6  END;
   7  /
-Trigger created.
+.
+
+
+Procedure created.
+
 
 SQL> CREATE OR REPLACE PROCEDURE UPDATE_STATUS_PROC(CID IN NUMBER,NEW_STATUS IN VARCHAR2)
   2  IS
@@ -26,4 +36,4 @@ SQL> CREATE OR REPLACE PROCEDURE UPDATE_STATUS_PROC(CID IN NUMBER,NEW_STATUS IN 
   4  UPDATE complaints SET STATUS=NEW_STATUS WHERE ID=CID;
   5  END;
   6  /
-Procedure created.
+
